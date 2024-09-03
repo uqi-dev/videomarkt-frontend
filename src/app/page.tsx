@@ -1,6 +1,6 @@
 import Hero from "@/app/hero/hero";
 import Header from "@/app/header/header";
-import ServiceGrid from "@/app/service-grid/ServiceGrid";
+import ServiceGrid from "@/app/service-grid/service-grid";
 
 export default function Home() {
   return (
