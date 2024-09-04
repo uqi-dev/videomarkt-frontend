@@ -4,30 +4,7 @@ import {Avatar, Badge, Button, Card, Image, Text} from '@mantine/core';
 import {IconEye, IconStar} from '@tabler/icons-react';
 
 interface ServiceCardProps {
-    service: {
-        id: number;
-        title: string;
-        image: string;
-        price: string;
-        isNew: boolean;
-        views: number;
-        rating: number;
-        ratingCount: number;
-        author: string;
-        authorAvatar: string;
-    };
-}
-
-const callAPI = async () => {
-    try {
-        const res = await fetch(
-            `http://localhost:3001/media`
-        );
-        const data = await res.json();
-        console.log(data);
-    } catch (err) {
-        console.log(err);
-    }
+    service: any;
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({service}) => {
@@ -35,7 +12,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({service}) => {
         <Card shadow="sm" padding="lg" radius="md" withBorder className="service-card">
             <Card.Section>
                 <Image
-                    src={service.image}
+                    src={service.thumbnail}
                     height={160}
                     alt={service.title}
                 />
@@ -44,14 +21,14 @@ const ServiceCard: React.FC<ServiceCardProps> = ({service}) => {
             <div className="service-details">
                 <div className="service-header">
                     <div className="service-header-left">
-                        <Avatar className="author-section img" src={service.authorAvatar} alt={service.author}
+                        <Avatar className="author-section img" src={service.thumbnail} alt={service.organization.name}
                                 radius="xl" size="sm"/>
-                        <Text className="author-name">{service.author}</Text>
+                        <Text className="author-name">{service.organization.users[0].firstName}</Text>
                     </div>
                     <div className="service-header-right">
                         <div className="views-section">
                             <IconEye size={16}/>
-                            <Text className="views">{service.views}k</Text>
+                            <Text className="views">25k</Text>
                         </div>
                         {service.isNew && <Badge color="green" size="sm" className="new-badge">New</Badge>}
                     </div>
@@ -64,10 +41,10 @@ const ServiceCard: React.FC<ServiceCardProps> = ({service}) => {
                 <div className="rating-price-section">
                     <div className="rating-section">
                         <IconStar size={16} color="orange"/>
-                        <Text className="rating">{service.rating} ({service.ratingCount})</Text>
+                        <Text className="rating">4 (30)</Text>
                     </div>
                     <Text className="price-section">
-                        Price {service.price}
+                        Price ${service.price}
                     </Text>
                     <Button className="buy-button">
                         Buy
