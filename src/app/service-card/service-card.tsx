@@ -2,6 +2,7 @@
 import './service-card.css';
 import {Avatar, Badge, Button, Card, Image, Text} from '@mantine/core';
 import {IconEye, IconStar} from '@tabler/icons-react';
+import Link from "next/link";
 
 interface ServiceCardProps {
     service: any;
@@ -9,19 +10,23 @@ interface ServiceCardProps {
 
 const ServiceCard: React.FC<ServiceCardProps> = ({service}) => {
     return (
+
         <Card shadow="sm" padding="lg" radius="md" withBorder className="service-card">
-            <Card.Section>
-                <Image
-                    src={service.thumbnail}
-                    height={160}
-                    alt={service.title}
-                />
-            </Card.Section>
+            <Link href={`/media-details/${service.id}`} passHref>
+                <Card.Section>
+                    <Image
+                        src={service.thumbnail}
+                        height={160}
+                        alt={service.title}
+                    />
+                </Card.Section>
+            </Link>
 
             <div className="service-details">
                 <div className="service-header">
                     <div className="service-header-left">
-                        <Avatar className="author-section img" src={service.thumbnail} alt={service.organization.name}
+                        <Avatar className="author-section img" src={service.thumbnail}
+                                alt={service.organization.name}
                                 radius="xl" size="sm"/>
                         <Text className="author-name">{service.organization.users[0].firstName}</Text>
                     </div>
@@ -52,6 +57,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({service}) => {
                 </div>
             </div>
         </Card>
+
     );
 }
 
