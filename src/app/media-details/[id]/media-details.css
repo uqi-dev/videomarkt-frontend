@@ -1,28 +1,28 @@
 /* Main container */
-.service-details-container {
-    /*max-width: 1800px;*/
-    /*margin: 0 auto;*/
+.media-details-container {
+    max-width: 1500px;
+    margin: 0 auto;
     /*padding: 40px 40px;*/
     /*background-color: #fff;*/
 }
 
 /* Flex container for image and info */
-.service-details-content {
+.media-details-content {
     display: flex;
     gap: 40px;  /* Space between image and info */
     align-items: flex-start;  /* Align image and info to the top */
-    padding: 40px;
+    padding-top: 40px;
 }
 
 /* Left section for the image */
-.service-image {
+.media-image {
     flex: 1;  /* Make image take up equal width with the info */
     display: flex;
     justify-content: left;
     align-items: center;
 }
 
-.service-image img {
+.media-image img {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
@@ -30,33 +30,33 @@
 }
 
 /* Right section for attributes and info */
-.service-info {
+.media-info {
     flex: 1;  /* Make info take up equal width with the image */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.service-info h1 {
+.media-info h1 {
     font-size: 1.8rem;
     margin-bottom: 20px;
     color: #333;
 }
 
-.service-info p {
+.media-info p {
     font-size: 1.1rem;
     color: #666;
     margin-bottom: 15px;
 }
 
-.service-attributes {
-    margin-top: 20px;
+.media-attributes {
+    /*margin-top: 10px;*/
     padding: 15px;
     border-radius: 8px;
-    background-color: #f9f9f9;
+    /*background-color: #dadfdf;*/
 }
 
-.service-attributes p {
+.media-attributes p {
     font-size: 1.1rem;
     margin: 10px 0;
 }
@@ -80,23 +80,23 @@
 }
 
 /* Related services section */
-.related-services {
+.related-media {
     margin-top: 50px;
 }
 
-.related-services h3 {
+.related-media h3 {
     font-size: 1.8rem;
     margin-bottom: 15px;
-    padding-left: 40px;
+    padding-left: 20px;
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
-    .service-details-content {
+    .media-details-content {
         flex-direction: column;
     }
 
-    .service-info {
+    .media-info {
         padding-top: 20px;
     }
 }
