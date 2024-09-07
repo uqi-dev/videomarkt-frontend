@@ -1,15 +1,15 @@
 'use client'
 
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 import './media-details.css';
-import { useParams, useRouter } from "next/navigation";
+import {useParams} from "next/navigation";
 import ServiceGrid from "@/app/service-grid/service-grid";
 import Header from "@/app/header/header";
+import Link from "next/link";
 
 
 const MediaDetails: React.FC = () => {
-    const router = useRouter();
-    const { id } = useParams();
+    const {id} = useParams();
     const [media, setMedia] = useState<any>(null);
 
     useEffect(() => {
@@ -29,7 +29,7 @@ const MediaDetails: React.FC = () => {
     return (
         <div className="media-details-container">
             <div>
-                <Header />
+                <Header/>
             </div>
             <div className="media-details-content">
                 <div className="media-image">
@@ -46,7 +46,9 @@ const MediaDetails: React.FC = () => {
                         <p><strong>Resolution:</strong> {media.resolution}</p>
                         <p><strong>Length:</strong> {media.length}</p>
                         <p><strong>File Size:</strong> {media.fileSize}</p>
-                        <button className="buy-button">Buy for ${media.price}</button>
+                        <Link href={`/payment/${media.id}`} passHref>
+                            <button className="buy-button">Buy for ${media.price}</button>
+                        </Link>
                     </div>
                 </div>
             </div>

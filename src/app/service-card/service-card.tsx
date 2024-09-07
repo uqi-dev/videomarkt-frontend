@@ -51,9 +51,11 @@ const ServiceCard: React.FC<ServiceCardProps> = ({service}) => {
                     <Text className="price-section">
                         Price ${service.price}
                     </Text>
-                    <Button className="buy-button">
-                        Buy
-                    </Button>
+                    <Link href={`/payment/${service.id}`} passHref>
+                        <Button className="buy-button">
+                            Buy
+                        </Button>
+                    </Link>
                 </div>
             </div>
         </Card>

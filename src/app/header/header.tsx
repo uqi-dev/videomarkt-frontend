@@ -1,5 +1,6 @@
 import './header.css'
 import Link from "next/link";
+import {Image} from "@mantine/core";
 
 export default function Header() {
     return (
@@ -11,6 +12,11 @@ export default function Header() {
                             VidMarkt
                         </text>
                     </svg>
+                    {/*<Image
+                        src="/loogo.jpg"
+                        // height={40}
+                        alt="VidMarkt"
+                    />*/}
                 </div>
             </Link>
             <div className="search-bar">

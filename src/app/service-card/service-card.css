@@ -50,6 +50,7 @@
 
 .service-card .title {
     margin-bottom: 25px;
+    margin-top: 20px !important;
 }
 
 .service-card .service-header-right .new-badge {
