@@ -1,17 +1,14 @@
 'use client';
 import './event.css';
 import Header from "@/app/header/header";
-import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
-import ServiceGrid from "@/app/service-grid/service-grid";
-import ServiceCard from "@/app/service-card/service-card";
+import {useParams} from "next/navigation";
+import React, {useEffect, useState} from "react";
 import EventMedia from "@/app/event/event-media/event-media";
-
 
 
 const Event: React.FC = () => {
 
-    const { id } = useParams();
+    const {id} = useParams();
     const [eventData, setEventData] = useState<any>(null);
 
 
@@ -27,7 +24,7 @@ const Event: React.FC = () => {
 
     // Function to convert date to 'DD MMM YYYY' format
     const formatDate = (dateString: string): string => {
-        const options: Intl.DateTimeFormatOptions = { day: '2-digit', month: 'short', year: 'numeric' };
+        const options: Intl.DateTimeFormatOptions = {day: '2-digit', month: 'short', year: 'numeric'};
         const date = new Date(dateString);
         return date.toLocaleDateString('en-GB', options); // Converts 'Sep' to 'Sept' .replace('Sep', 'Sept')
     };
@@ -40,7 +37,7 @@ const Event: React.FC = () => {
 
     return (
         <div className="main-container">
-            <Header />
+            <Header/>
             {/* Banner */}
             <div className="relative">
                 <img
@@ -50,6 +47,7 @@ const Event: React.FC = () => {
                 />
                 {/* Profile Thumbnail */}
                 <div className="absolute bottom-0 left-8 -mb-10">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                         src={eventData.thumbnail}
                         alt="Profile Thumbnail"
@@ -76,7 +74,8 @@ const Event: React.FC = () => {
 
                 {/* Navigation Tabs */}
                 <div className="flex space-x-4 border-b-2 border-gray-300 pb-2">
-                    <button className="text-gray-600 font-semibold hover:text-black border-b-2 border-transparent hover:border-black transition duration-300">
+                    <button
+                        className="text-gray-600 font-semibold hover:text-black border-b-2 border-transparent hover:border-black transition duration-300">
                         Videos
                     </button>
                 </div>
@@ -84,13 +83,7 @@ const Event: React.FC = () => {
 
                 {/* Videos Section */}
                 <div className="mt-8">
-
-                    <EventMedia/>
-
-                    {/*<ServiceGrid />*/}
-                    {/*{eventData.media.map(service => (*/}
-                    {/*    <ServiceCard key={service.id} service={service}/>*/}
-                    {/*))}*/}
+                    <EventMedia mediaList={eventData.media}/>
                 </div>
             </div>
         </div>

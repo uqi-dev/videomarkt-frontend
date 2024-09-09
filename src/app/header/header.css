@@ -100,6 +100,27 @@
     border: 1px solid green;
 }
 
+.place {
+    display: flex;
+    align-items: center;
+    color: #6c757d;
+    font-size: 13px;
+    text-align: right;
+}
+
+
+.location-icon {
+    margin-right: 5px;
+    color: #c00b0b;
+}
+
+
+
+
+
+
+
+
 
 
 

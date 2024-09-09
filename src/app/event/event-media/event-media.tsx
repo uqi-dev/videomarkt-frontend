@@ -1,27 +1,22 @@
 'use client'
-import React, { useState } from 'react';
-// import './video-list.css'; // If needed for additional styles
+import React, {useState} from 'react';
+import Link from "next/link";
 
 
-interface Video {
-    id: number;
-    thumbnail: string;
-    title: string;
-    date: string;
-    price: string;
+interface MediaProps {
+    mediaList: any;
 }
 
+// Function to convert date to 'DD MMM YYYY' format
+const formatDate = (dateString: string): string => {
+    const options: Intl.DateTimeFormatOptions = {day: '2-digit', month: 'short', year: 'numeric'};
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-GB', options); // Converts 'Sep' to 'Sept' .replace('Sep', 'Sept')
+};
 
-const videoData: Video[] = [
-    { id: 1, thumbnail: '/img_1.png', title: 'Purple Fitness - Day 3', date: '03/22/16 at 1:01 PM', price: '$10' },
-    { id: 2, thumbnail: '/img_2.png', title: 'Purple Fitness - Day 2', date: '03/22/16 at 1:00 PM', price: '$10' },
-    { id: 3, thumbnail: '/img_3.png', title: 'Purple Fitness - Day 1', date: '03/22/16 at 1:01 PM', price: '$10' },
-    { id: 4, thumbnail: '/img_8.png', title: 'Purple Fitness - Day 4', date: '06/16/16 at 2:33 PM', price: '$10' },
-];
 
-
-const EventMedia: React.FC = () => {
-    const [videos] = useState<Video[]>(videoData);
+const EventMedia: React.FC<MediaProps> = ({mediaList}) => {
+    const [videos] = useState<any[]>(mediaList);
 
 
     return (
@@ -39,29 +34,32 @@ const EventMedia: React.FC = () => {
                 {videos.map((video) => (
                     <div key={video.id} className="flex items-center border-b-[1.5px] border-gray-200 py-4">
                         {/* Thumbnail */}
-                        <div className="w-16 h-16">
-                            <img src={video.thumbnail} alt={video.title} className="object-cover w-full h-full rounded" />
+                        <div className="w-28 h-16">
+                            <img src={video.thumbnail} alt={video.title}
+                                 className="object-cover w-full h-full rounded"/>
                         </div>
 
 
                         {/* Title & Date */}
                         <div className="ml-4 flex-grow">
-                            <p className="text-lg font-semibold">{video.title}</p>
-                            <p className="text-sm text-gray-500">{video.date}</p>
+                            <p className="text-md font-semibold">{video.title}</p>
+                            <p className="text-sm text-gray-500">{formatDate(video.createdAt)}</p>
                         </div>
 
 
                         {/* Price */}
-                        <div className="ml-4">
-                            <p className="text-lg font-semibold">{video.price}</p>
+                        <div className="ml-4 mr-20">
+                            <p className="text-md font-semibold">${video.price}</p>
                         </div>
 
 
                         {/* Buy Button */}
                         <div className="ml-4">
-                            <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
-                                Buy
-                            </button>
+                            <Link href={`/payment/${video.id}`} passHref>
+                                <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+                                    Buy
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 ))}
@@ -72,8 +70,3 @@ const EventMedia: React.FC = () => {
 
 
 export default EventMedia;
-
-
-
-
-

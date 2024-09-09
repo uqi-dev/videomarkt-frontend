@@ -1,7 +1,8 @@
 'use client'
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import './header.css';
 import Link from "next/link";
+import {FaMapMarkerAlt} from 'react-icons/fa';
 
 
 interface Suggestion {
@@ -48,7 +49,7 @@ const Header: React.FC = () => {
             <Link href={`/`} passHref>
                 <div className="logo">
                     <svg xmlns="http://www.w3.org/2000/svg" width="200" height="60" viewBox="0 0 200 60">
-                        <text x="10" y="45" font-family="Arial, Helvetica, sans-serif" font-size="40" fill="green">
+                        <text x="10" y="45" fontFamily="Arial, Helvetica, sans-serif" fontSize="40" fill="green">
                             VidMarkt
                         </text>
                     </svg>
@@ -68,10 +69,13 @@ const Header: React.FC = () => {
                         {suggestions.map(suggestion => (
                             <Link key={suggestion.id} href={`/event/${suggestion.id}`} passHref>
                                 <div className="suggestion-item">
-                                    <img src={suggestion.thumbnail} alt={suggestion.name} />
+                                    <img src={suggestion.thumbnail} alt={suggestion.name}/>
                                     <div className="suggestion-details">
                                         <span>{suggestion.name}</span>
-                                        <span className="place">{suggestion.place}</span>
+                                        <span className="place">
+                                           <FaMapMarkerAlt className="location-icon"/> {/* React icon */}
+                                            {suggestion.place}
+                                       </span>
                                     </div>
                                 </div>
                             </Link>
