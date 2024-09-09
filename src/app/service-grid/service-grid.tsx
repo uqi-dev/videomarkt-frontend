@@ -12,7 +12,6 @@ const ServiceGrid: React.FC = () => {
                 const res = await fetch('http://localhost:3001/media');
                 const data = await res.json();
                 setCardData(data);
-                console.log(data);
             } catch (err) {
                 console.log(err);
             }

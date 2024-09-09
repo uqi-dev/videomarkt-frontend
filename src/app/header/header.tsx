@@ -1,8 +1,48 @@
-import './header.css'
+'use client'
+import React, {useState, useEffect} from 'react';
+import './header.css';
 import Link from "next/link";
-import {Image} from "@mantine/core";
 
-export default function Header() {
+
+interface Suggestion {
+    id: number;
+    thumbnail: string;
+    name: string;
+    place: string;
+    description: string;
+    price: number;
+    createdAt: Date;
+}
+
+
+const Header: React.FC = () => {
+    const [query, setQuery] = useState('');
+    const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
+
+    const fetchSuggestions = async (searchQuery: string) => {
+        try {
+            const res = await fetch(`http://localhost:3001/event?search=${searchQuery}`);
+            const data: Suggestion[] = await res.json();
+            setSuggestions(data);
+        } catch (err) {
+            console.error('Error fetching suggestions:', err);
+        }
+    };
+
+
+    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        setQuery(value);
+
+
+        if (value.length > 0) {
+            fetchSuggestions(value);  // Fetch suggestions based on the query
+        } else {
+            setSuggestions([]);  // Clear suggestions if input is empty
+        }
+    };
+
+
     return (
         <header className="header">
             <Link href={`/`} passHref>
@@ -12,20 +52,47 @@ export default function Header() {
                             VidMarkt
                         </text>
                     </svg>
-                    {/*<Image
-                        src="/loogo.jpg"
-                        // height={40}
-                        alt="VidMarkt"
-                    />*/}
                 </div>
             </Link>
+
+
             <div className="search-bar">
-                <input type="text" placeholder="Search event"/>
+                <input
+                    type="text"
+                    placeholder="Search event"
+                    value={query}
+                    onChange={handleSearchChange}
+                />
+                {suggestions.length > 0 && (
+                    <div className="suggestions-dropdown">
+                        {suggestions.map(suggestion => (
+                            <Link key={suggestion.id} href={`/event/${suggestion.id}`} passHref>
+                                <div className="suggestion-item">
+                                    <img src={suggestion.thumbnail} alt={suggestion.name} />
+                                    <div className="suggestion-details">
+                                        <span>{suggestion.name}</span>
+                                        <span className="place">{suggestion.place}</span>
+                                    </div>
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+                )}
             </div>
+
+
             <div className="auth-buttons">
                 <button className="sign-up">Sign up</button>
                 <button className="log-in">Log in</button>
             </div>
         </header>
     );
-}
+};
+
+
+export default Header;
+
+
+
+
+
