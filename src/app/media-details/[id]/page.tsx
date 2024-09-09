@@ -40,8 +40,8 @@ const MediaDetails: React.FC = () => {
                     <h1>{media.title}</h1>
                     <p>{media.description}</p>
                     <div className="media-attributes">
-                        <p><strong>Organization name:</strong> {media.organization.name}</p>
-                        <p><strong>Author:</strong> {media.organization.users[0].firstName}</p>
+                        <p><strong>Event name:</strong> {media.event.name}</p>
+                        <p><strong>Author:</strong> {media.event.users[0].firstName}</p>
                         <p><strong>Price:</strong> ${media.price}</p>
                         <p><strong>Resolution:</strong> {media.resolution}</p>
                         <p><strong>Length:</strong> {media.length}</p>

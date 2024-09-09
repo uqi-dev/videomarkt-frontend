@@ -26,9 +26,9 @@ const ServiceCard: React.FC<ServiceCardProps> = ({service}) => {
                 <div className="service-header">
                     <div className="service-header-left">
                         <Avatar className="author-section img" src={service.thumbnail}
-                                alt={service.organization.name}
+                                alt={service.event.name}
                                 radius="xl" size="sm"/>
-                        <Text className="author-name">{service.organization.users[0].firstName}</Text>
+                        <Text className="author-name">{service.event.users[0].firstName}</Text>
                     </div>
                     <div className="service-header-right">
                         <div className="views-section">
