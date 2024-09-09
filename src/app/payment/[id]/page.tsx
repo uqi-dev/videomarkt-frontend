@@ -3,10 +3,11 @@
 import React, {useEffect, useState} from 'react';
 import './payment.css';
 import Header from "@/app/header/header";
-import {useParams} from "next/navigation";
+import {useParams, useRouter} from "next/navigation";
 
 const Checkout: React.FC = () => {
     const {id} = useParams();
+    const router = useRouter();
     const [media, setMedia] = useState<any>(null);
     const [formData, setFormData] = useState({
         fullName: '',
@@ -62,7 +63,9 @@ const Checkout: React.FC = () => {
 
             const result = await response.json();
             console.log('Payment successful:', result);
-            // You can redirect to a success page or show a message
+            if (result.isSuccess) {
+                router.push('/profile');
+            }
         } catch (err) {
             console.error('Error submitting form:', err);
         }
@@ -77,7 +80,7 @@ const Checkout: React.FC = () => {
             <Header />
             <div className="checkout-container">
                 <div className="order-summary">
-                    <h3 className="item-heading">Media Items</h3>
+                    {/*<h3 className="item-heading">Media Items</h3>*/}
 
                     <div className="item-list">
                         <div className="item">
@@ -103,7 +106,7 @@ const Checkout: React.FC = () => {
 
                 <div className="payment-details">
                     <form onSubmit={handleSubmit}>
-                        <h3>Payment Details</h3>
+                        {/*<h3 className="item-heading">Payment Details</h3>*/}
 
                         <label htmlFor="fullName">Full Name</label>
                         <input

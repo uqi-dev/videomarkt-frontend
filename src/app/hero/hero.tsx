@@ -27,8 +27,8 @@ export default function Hero() {
                     <a href="#" className="cta-button">Join now</a>
                 </div>
             </div>
-            <br />
-            <div>
+            {/*<br />*/}
+            {/*<div>
                 <div className="tag-slider-container">
                     <button className="slider-btn left-btn" onClick={scrollLeft}>&#8249;</button>
                     <div className="tag-slider" id="tagSlider">
@@ -48,7 +48,7 @@ export default function Hero() {
                     </div>
                     <button className="slider-btn right-btn" onClick={scrollRight}>&#8250;</button>
                 </div>
-            </div>
+            </div>*/}
         </section>
     );
 }

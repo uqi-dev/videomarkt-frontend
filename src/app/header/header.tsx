@@ -20,7 +20,7 @@ export default function Header() {
                 </div>
             </Link>
             <div className="search-bar">
-                <input type="text" placeholder="Search..."/>
+                <input type="text" placeholder="Search event"/>
             </div>
             <div className="auth-buttons">
                 <button className="sign-up">Sign up</button>

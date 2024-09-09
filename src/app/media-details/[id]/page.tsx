@@ -54,7 +54,6 @@ const MediaDetails: React.FC = () => {
             </div>
 
             <div className="related-media">
-                <h3>You may like more options</h3>
                 <ServiceGrid/>
             </div>
         </div>
